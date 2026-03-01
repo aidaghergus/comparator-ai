@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    container_name: comparator-api
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - CACHE_DIR=/app/cache
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Live-reload: Orice modificare în main.py se reflectă instant în container
+      - ./main.py:/app/main.py
+      # Volum gestionat de Docker: Rezolvă eroarea "disk I/O error" a SQLite-ului pe Windows
+      - app_cache:/app/cache
+
+# Aici îi spunem lui Docker să creeze și să gestioneze el folderul de cache
+volumes:
+  app_cache:
