@@ -59,6 +59,7 @@ class FeatureComparison(BaseModel):
     feature_name: str = Field(description="Numele caracteristicii")
     produs_a_value: str = Field(description="Valoare produs A")
     produs_b_value: str = Field(description="Valoare produs B")
+    rationale: str = Field(description="Analiza a diferentelor si ce conteaza in luarea deciziei")
     winner_score: int = Field(ge=1, le=10, description="Diferență 1-10")
     winner: str = Field(pattern="^(A|B|Egal)$")
     relevant_pentru_user: bool
